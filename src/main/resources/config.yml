@@ -1,5 +1,10 @@
-afktime: 300
-afk-room:
-  x: 479.5
-  y: 12
-  z: -361.5
+# Seconds without activity before a player is sent to the AFK room.
+afk-time: 300
+
+# The AFK room location. Set it in-game with /afkroom set.
+# Players are not moved anywhere until this is set.
+afk-room: {}
+
+# Title shown every second while a player is in the AFK room. Supports & color codes.
+title: '&c&l-*&6&lAFK-Room&c&l*-'
+subtitle: '&eMove to go back'

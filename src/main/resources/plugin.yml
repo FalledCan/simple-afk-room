@@ -1,9 +1,18 @@
 name: Simple_AFK_Room
-version: '${project.version}'
+version: '${version}'
 main: com.github.falledcan.simple_afk_room.Simple_AFK_Room
-api-version: 1.18
+api-version: '1.18'
 authors: [ FalledCan ]
+description: Teleports idle players to an AFK room and brings them back when they move.
 commands:
   afkroom:
-    usage: /afkroom
+    description: Manage the AFK room.
+    usage: /afkroom <set|tp|time|reload>
     permission: afkroom.admin
+permissions:
+  afkroom.admin:
+    description: Allows using /afkroom.
+    default: op
+  afkroom.bypass:
+    description: Never sent to the AFK room.
+    default: false
