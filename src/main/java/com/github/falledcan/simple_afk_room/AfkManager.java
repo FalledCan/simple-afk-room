@@ -166,13 +166,14 @@ public class AfkManager {
 
     @SuppressWarnings("deprecation") // sendTitle(String, ...) works on both Spigot and Paper
     private void sendTitle(Player p) {
-        String title = color(plugin.getConfig().getString("title", ""));
-        String subtitle = color(plugin.getConfig().getString("subtitle", ""));
+        // The one-argument getString falls back to the bundled config.yml; getString(path, def) would not.
+        String title = color(plugin.getConfig().getString("title"));
+        String subtitle = color(plugin.getConfig().getString("subtitle"));
         p.sendTitle(title, subtitle, 0, 30, 5);
     }
 
     @SuppressWarnings("deprecation")
     private static String color(String s) {
-        return ChatColor.translateAlternateColorCodes('&', s);
+        return s == null ? "" : ChatColor.translateAlternateColorCodes('&', s);
     }
 }

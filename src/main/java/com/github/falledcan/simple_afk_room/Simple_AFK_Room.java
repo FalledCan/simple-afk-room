@@ -34,14 +34,24 @@ public final class Simple_AFK_Room extends JavaPlugin {
         }
     }
 
-    /** Converts config files written by 1.0 ("afktime") to the current layout. */
+    /** Converts config files written by 1.0 ("afktime") and adds any keys missing from older files. */
     private void migrateConfig() {
         FileConfiguration config = getConfig();
+        boolean changed = false;
         if (config.contains("afktime", true)) {
             if (!config.contains("afk-time", true)) {
                 config.set("afk-time", config.getInt("afktime"));
             }
             config.set("afktime", null);
+            changed = true;
+        }
+        for (String key : config.getDefaults().getKeys(false)) {
+            if (!config.contains(key, true)) {
+                config.set(key, config.getDefaults().get(key));
+                changed = true;
+            }
+        }
+        if (changed) {
             saveConfig();
         }
     }
